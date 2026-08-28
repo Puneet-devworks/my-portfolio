@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Puneet Tiwari — Full Stack Developer | React, Next.js, Node.js, Spring Boot</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--surface:#141414;--surface-alt:#0f0f0f;
+  --primary:#ff2d95;--secondary:#00e5ff;
+  --text:#f0f0f0;--muted:#888;
+  --glow-pink:0 0 10px #ff2d95,0 0 40px rgba(255,45,149,.25);
+  --glow-cyan:0 0 10px #00e5ff,0 0 40px rgba(0,229,255,.25);
+  --gradient:linear-gradient(135deg,var(--primary),var(--secondary));
+}
+html{scroll-behavior:smooth;font-size:15px;scroll-padding-bottom:80px}
+body{font-family:Inter,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;padding-bottom:72px}
+h1,h2,h3,h4{font-family:Rajdhani,Arial,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+a{color:var(--secondary);text-decoration:none;transition:color .25s}
+a:hover{color:var(--primary)}
+
+/* Sections */
+.section{padding:110px 5vw 90px;width:100%;position:relative}
+.section--dark{background:var(--bg)}
+.section--darker{background:var(--surface)}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--primary);margin-bottom:8px;display:block}
+.section-title{font-size:2.6rem;margin-bottom:14px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block}
+.section-title::after{content:'';display:block;width:60px;height:3px;background:var(--gradient);margin-top:10px;border-radius:2px;box-shadow:var(--glow-pink)}
+.section-desc{color:var(--muted);font-size:.95rem;margin-bottom:48px;max-width:540px}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;left:-10%;width:55%;height:80%;background:radial-gradient(ellipse,rgba(255,45,149,.07) 0%,transparent 70%);pointer-events:none;animation:drift 14s ease-in-out infinite alternate}
+.hero::after{content:'';position:absolute;bottom:-20%;right:-10%;width:50%;height:70%;background:radial-gradient(ellipse,rgba(0,229,255,.06) 0%,transparent 70%);pointer-events:none;animation:drift 18s ease-in-out infinite alternate-reverse}
+@keyframes drift{0%{transform:translate(0,0)}100%{transform:translate(30px,-20px)}}
+.hero-badge{display:inline-block;padding:6px 18px;border:1px solid rgba(255,45,149,.3);border-radius:20px;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:20px}
+.hero h1{font-size:clamp(3rem,7vw,5.5rem);text-shadow:var(--glow-pink);margin-bottom:10px;position:relative;z-index:1}
+.hero .subtitle{font-size:clamp(1.1rem,2.5vw,1.6rem);color:var(--secondary);text-shadow:var(--glow-cyan);margin-bottom:28px;position:relative;z-index:1}
+.hero .about{max-width:620px;margin:0 auto;color:var(--muted);font-size:1rem;line-height:1.85;position:relative;z-index:1}
+.hero .location{margin-top:20px;font-size:.84rem;color:var(--muted);position:relative;z-index:1}
+.hero .scroll-cue{margin-top:48px;display:inline-block;width:24px;height:40px;border:2px solid var(--muted);border-radius:12px;position:relative;z-index:1}
+.hero .scroll-cue::after{content:'';width:4px;height:8px;background:var(--primary);border-radius:2px;position:absolute;left:50%;top:8px;transform:translateX(-50%);animation:scroll-dot 2s ease-in-out infinite}
+@keyframes scroll-dot{0%,100%{opacity:1;transform:translateX(-50%) translateY(0)}50%{opacity:.3;transform:translateX(-50%) translateY(12px)}}
+
+/* Timeline */
+.timeline{position:relative;padding-left:36px}
+.timeline::before{content:'';position:absolute;left:9px;top:0;bottom:0;width:2px;background:var(--gradient)}
+.timeline-item{position:relative;margin-bottom:36px;padding:28px 32px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);border-radius:12px;transition:border-color .3s,box-shadow .3s}
+.timeline-item:hover{border-color:var(--primary);box-shadow:0 0 24px rgba(255,45,149,.08)}
+.timeline-item::before{content:'';position:absolute;left:-31px;top:34px;width:14px;height:14px;border-radius:50%;background:var(--primary);box-shadow:var(--glow-pink);transition:transform .3s}
+.timeline-item:hover::before{transform:scale(1.3)}
+.timeline-item h3{font-size:1.2rem;color:var(--text);margin-bottom:2px}
+.timeline-item .meta{font-size:.84rem;color:var(--secondary);margin-bottom:12px}
+.timeline-item ul{list-style:none;padding:0}
+.timeline-item li{padding-left:20px;position:relative;color:var(--muted);margin-bottom:5px;font-size:.92rem}
+.timeline-item li::before{content:'▹';position:absolute;left:0;color:var(--primary)}
+
+/* Education */
+.edu-card{padding:28px 32px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);border-radius:12px;max-width:620px;position:relative;overflow:hidden}
+.edu-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--gradient)}
+.edu-card h3{font-size:1.2rem;margin-bottom:4px}
+.edu-card .meta{color:var(--secondary);font-size:.84rem;margin-bottom:10px}
+.edu-card p{color:var(--muted);font-size:.92rem}
+
+/* Skills */
+.skills-grid{display:flex;flex-wrap:wrap;gap:12px}
+.skill-tag{padding:9px 22px;border:1px solid var(--primary);border-radius:30px;font-size:.87rem;color:var(--text);background:transparent;transition:all .3s;cursor:default;position:relative}
+.skill-tag:hover{background:var(--primary);color:#fff;box-shadow:var(--glow-pink);transform:translateY(-2px)}
+.skill-tag:nth-child(even){border-color:var(--secondary)}
+.skill-tag:nth-child(even):hover{background:var(--secondary);color:var(--bg);box-shadow:var(--glow-cyan)}
+
+/* Projects */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+.project-card{padding:32px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);border-radius:12px;transition:transform .35s,border-color .35s,box-shadow .35s;position:relative;overflow:hidden}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);opacity:0;transition:opacity .3s}
+.project-card:hover{transform:translateY(-5px);border-color:var(--secondary);box-shadow:0 0 28px rgba(0,229,255,.1)}
+.project-card:hover::before{opacity:1}
+.project-card h3{font-size:1.15rem;margin-bottom:10px}
+.project-card .tag{display:inline-block;font-size:.7rem;padding:3px 10px;border-radius:10px;background:rgba(255,45,149,.12);color:var(--primary);margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em}
+.project-card p{color:var(--muted);font-size:.92rem;line-height:1.7}
+
+/* Contact */
+.contact-links{display:flex;flex-wrap:wrap;gap:14px}
+.contact-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border:1px solid rgba(255,255,255,.08);border-radius:30px;color:var(--text);font-size:.9rem;transition:all .3s}
+.contact-link:hover{border-color:var(--primary);color:var(--primary);box-shadow:var(--glow-pink);transform:translateY(-2px)}
+
+/* Bottom Nav */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-top:1px solid rgba(255,255,255,.05);z-index:100;padding:10px 0}
+.bottom-nav ul{display:flex;justify-content:center;gap:4px;list-style:none;margin:0;padding:0 12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.bottom-nav ul::-webkit-scrollbar{display:none}
+.bottom-nav a{display:block;padding:8px 16px;border-radius:22px;font-family:Rajdhani,Arial,sans-serif;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);transition:all .3s;white-space:nowrap}
+.bottom-nav a.active{color:#fff;background:var(--gradient);box-shadow:var(--glow-pink)}
+.bottom-nav a:hover:not(.active){color:var(--text)}
+
+/* Footer */
+.footer{text-align:center;padding:36px 20px 88px;color:var(--muted);font-size:.76rem;letter-spacing:.04em}
+.footer span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700}
+
+/* Responsive */
+@media(max-width:1199px){
+  .section{padding:90px 4vw 70px}
+  .section-title{font-size:2.2rem}
+}
+@media(max-width:768px){
+  .section{padding:70px 20px 56px}
+  .section-title{font-size:1.8rem}
+  .hero h1{text-shadow:0 0 6px rgba(255,45,149,.4)}
+  .timeline{padding-left:26px}
+  .timeline-item{padding:22px 20px}
+  .timeline-item::before{left:-23px;width:10px;height:10px}
+  .projects-grid{grid-template-columns:1fr}
+  .contact-links{flex-direction:column}
+  .bottom-nav a{padding:7px 13px;font-size:.72rem}
+  .hero .scroll-cue{display:none}
+}
+
+/* Animations */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.stagger-1{transition-delay:.05s}.stagger-2{transition-delay:.1s}.stagger-3{transition-delay:.15s}
+.stagger-4{transition-delay:.2s}.stagger-5{transition-delay:.25s}.stagger-6{transition-delay:.3s}
+</style>
+<style id="portfolio-editor-overrides" data-state="{&quot;accentColor&quot;:&quot;&quot;,&quot;customHex&quot;:&quot;&quot;,&quot;fontId&quot;:&quot;default&quot;,&quot;fontSize&quot;:&quot;default&quot;,&quot;lineHeight&quot;:&quot;default&quot;,&quot;sectionSpacing&quot;:&quot;default&quot;,&quot;scrollReveal&quot;:&quot;none&quot;,&quot;hoverEffect&quot;:&quot;none&quot;,&quot;borderRadiusTheme&quot;:&quot;default&quot;,&quot;shadowTheme&quot;:&quot;none&quot;,&quot;sectionDivider&quot;:&quot;none&quot;,&quot;transitionSpeed&quot;:&quot;default&quot;,&quot;buttonStyle&quot;:&quot;default&quot;,&quot;pageBg&quot;:&quot;default&quot;,&quot;colorVarOverrides&quot;:{},&quot;scrollRevealDuration&quot;:&quot;normal&quot;,&quot;scrollRevealStagger&quot;:&quot;none&quot;,&quot;scrollRevealEasing&quot;:&quot;ease&quot;,&quot;scrollRevealThreshold&quot;:&quot;mid&quot;,&quot;textAnimation&quot;:&quot;none&quot;,&quot;counterAnimation&quot;:false,&quot;splitText&quot;:false,&quot;hoverImageEffect&quot;:&quot;none&quot;,&quot;hoverLinkStyle&quot;:&quot;none&quot;,&quot;btnPulse&quot;:false,&quot;elementGlow&quot;:&quot;none&quot;,&quot;cursorEffect&quot;:&quot;none&quot;,&quot;bgParticles&quot;:&quot;none&quot;,&quot;parallaxDepth&quot;:&quot;none&quot;,&quot;pageLoadAnim&quot;:&quot;none&quot;,&quot;scrollProgressBar&quot;:false,&quot;smoothScroll&quot;:false,&quot;revealNumbers&quot;:false}"></style></head>
+<body>
+
+<section class="hero section section--dark" data-portfolio-section="hero">
+  <div class="section-inner fade-up visible has-photo">
+    <img src="https://resumly.s3.amazonaws.com/6a91cac0b3b2570568cbb4b7/standalone-images/fec0b40216994cb68ba84e3a7662f375.jpg" alt="Puneet Tiwari" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; margin-left: auto; margin-right: auto; position: relative; z-index: 1;">
+    <div class="hero-badge">Available for Opportunities</div>
+    <h1>Puneet Tiwari</h1><p class="subtitle">Full Stack Developer | React, Next.js, Node.js, Spring Boot · Bangalore, IN</p><p class="about">I am a full stack developer with 8+ years of experience building production-grade travel, enterprise, and logistics platforms. My work spans frontend frameworks, backend services, microservices, and API integrations using technologies such as React, Next.js, Node.js, and Java Spring Boot. I have delivered impactful platforms and features across booking, payments, receipts processing, and enterprise integrations, with a strong focus on ownership, problem-solving, and communication.</p><p class="location">Bangalore, IN</p>
+    <div class="scroll-cue"></div>
+  </div>
+</section>
+
+<section class="section section--darker" data-portfolio-section="experience">
+  <div class="section-inner">
+    <span class="section-label fade-up visible">Career</span>
+    <h2 class="section-title fade-up visible">Experience</h2>
+    <p class="section-desc fade-up visible">Building products that scale and mentoring the next generation of engineers.</p>
+    <div class="timeline">
+      <div class="timeline-item fade-up stagger-1 visible" data-portfolio-item="">
+        <h3>Full Stack Developer</h3><p class="meta">TBO.COM · Apr 2026 – Present</p><ul>
+          <li>Working on ancillary booking platforms across sightseeing, transfers, car rentals, and rail. Contributing to supplier integrations and customer-facing enhancements across booking workflows.</li><li>Integrated suppliers such as Leamigo, Hertz, and Full of Dreams via UAPI.</li><li>Handled request and response mapping, availability handling, and supplier communication.</li><li>Implemented Pay By Link, Voucher Revamp, and Favorites across ancillary applications.</li><li>Built ancillary booking platforms for sightseeing, transfers, car rentals, and rail.</li></ul>
+      </div>
+      <div class="timeline-item fade-up stagger-2 visible" data-portfolio-item="">
+        <h3>Software Development Engineer</h3><p class="meta">CLASSIC VACATIONS · Aug 2023 – Mar 2026</p><ul>
+          <li>Built group booking and call-center platforms supporting air booking, trip servicing, and payments. Focused on frontend architecture, booking workflows, API integrations, and production delivery.</li><li>Designed the UI framework of the Group Booking platform using React and Next.js.</li><li>Developed round-trip air booking, multi-segment search, passenger details, and payment flows.</li><li>Integrated frontend workflows with backend REST APIs and Cybersource payment validations.</li><li>Delivered 140+ production releases.</li><li>Reduced AWS billing through logging optimization.</li></ul>
+      </div>
+      <div class="timeline-item fade-up stagger-3 visible" data-portfolio-item="">
+        <h3>Software Engineer</h3><p class="meta">SAP LABS · Jul 2018 – Jul 2023</p><ul>
+          <li>Worked across Concur Receipts microservices, resource scheduling UI, and enterprise logistics integrations. Contributed to backend stability, frontend feature delivery, CI/CD quality improvements, and cross-system integration support.</li><li>Worked on Concur Receipts microservices supporting spend and receipt processing.</li><li>Implemented backend changes in Java and Spring Boot microservices and improved service stability.</li><li>Strengthened CI/CD quality gates, test coverage, and release validation.</li><li>Developed resource scheduling UI features using JavaScript and SAP UI5 SDK.</li><li>Delivered 103 features and led the UI team for 6 months.</li><li>Resolved customer incidents.</li><li>Worked on JIT/JIS logistics integrations for spare-parts data exchange and plant reporting.</li><li>Maintained ABAP reports and RFC-based integration modules across enterprise systems.</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark" data-portfolio-section="education">
+  <div class="section-inner">
+    <span class="section-label fade-up visible">Academics</span>
+    <h2 class="section-title fade-up visible">Education</h2>
+    <div class="edu-card fade-up visible" data-portfolio-item="">
+      <h3>B.Tech. in E.C.E.</h3><p class="meta">MNNIT Allahabad · 2014 – 2018</p><p></p></div>
+    <div class="edu-card fade-up visible" data-portfolio-item="">
+      <h3>Intermediate</h3><p class="meta">Rani Laxmi Bai MSS School · 2013</p><p></p></div>
+    <div class="edu-card fade-up visible" data-portfolio-item="">
+      <h3>High School</h3><p class="meta">Rani Laxmi Bai MSS School · 2011</p><p></p></div>
+  </div>
+</section>
+
+<section class="section section--darker" data-portfolio-section="skills">
+  <div class="section-inner">
+    <span class="section-label fade-up visible">Toolbox</span>
+    <h2 class="section-title fade-up visible">Skills</h2>
+    <p class="section-desc fade-up visible">Technologies and languages I work with daily.</p>
+    <div class="skills-grid">
+      <span class="skill-tag fade-up stagger-1 visible" data-portfolio-item="">ReactJS</span><span class="skill-tag fade-up stagger-1 visible" data-portfolio-item="">Next.JS</span><span class="skill-tag fade-up stagger-2 visible" data-portfolio-item="">HTML/CSS</span><span class="skill-tag fade-up stagger-2 visible" data-portfolio-item="">SAP UI5</span><span class="skill-tag fade-up stagger-3 visible" data-portfolio-item="">Node.js</span><span class="skill-tag fade-up stagger-3 visible" data-portfolio-item="">Spring Boot</span><span class="skill-tag fade-up stagger-4 visible" data-portfolio-item="">.NET</span><span class="skill-tag fade-up stagger-4 visible" data-portfolio-item="">ABAP</span><span class="skill-tag fade-up stagger-5 visible" data-portfolio-item="">REST APIs</span><span class="skill-tag fade-up stagger-5 visible" data-portfolio-item="">Microservices</span><span class="skill-tag fade-up stagger-6 visible" data-portfolio-item="">SQL</span><span class="skill-tag fade-up stagger-6 visible" data-portfolio-item="">MongoDB</span><span class="skill-tag fade-up stagger-6 visible" data-portfolio-item="">Firebase</span><span class="skill-tag fade-up stagger-6 visible" data-portfolio-item="">AWS</span><span class="skill-tag fade-up stagger-6 visible" data-portfolio-item="">JavaScript</span><span class="skill-tag fade-up stagger-6 visible" data-portfolio-item="">TypeScript</span><span class="skill-tag fade-up stagger-6 visible" data-portfolio-item="">Java</span><span class="skill-tag fade-up stagger-6 visible" data-portfolio-item="">C#</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark" data-portfolio-section="projects">
+  <div class="section-inner">
+    <span class="section-label fade-up visible">Work</span>
+    <h2 class="section-title fade-up visible">Projects</h2>
+    <p class="section-desc fade-up visible">Open-source contributions and side projects.</p>
+    <div class="projects-grid">
+      <div class="project-card fade-up stagger-1 visible" data-portfolio-item="">
+        <span class="tag">Open Source</span>
+        <a href="https://www.bizwapp.com"><h3>BIZWAPP</h3></a><p>WhatsApp-based CRM and automation platform for Businesses offering automated solutions</p></div>
+      <div class="project-card fade-up stagger-2 visible" data-portfolio-item="">
+        <span class="tag">Dashboard</span>
+        <a href="https://bitbot.solutioneers.in"><h3>BITBOT</h3></a><p>Lean Platform for Traders providing Techincal Analysis, Trade Automation of Assets using Delta Exchange API</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--darker" data-portfolio-section="achievements">
+  <div class="section-inner">
+    <span class="section-label fade-up visible">Milestones</span>
+    <h2 class="section-title fade-up visible">Achievements</h2>
+    <div class="timeline">
+      <div class="timeline-item fade-up stagger-1 visible" data-portfolio-item="">
+        <h3>5th Rank Holder in UPSEE</h3><p class="meta">2014</p><p>Achieved 5th rank in UPSEE in 2014.</p>
+      </div>
+      <div class="timeline-item fade-up stagger-2 visible" data-portfolio-item="">
+        <h3>Mess Manager</h3><p class="meta">2015 – 2017</p><p>Served as Mess Manager, overseeing operations and team coordination.</p>
+      </div>
+      <div class="timeline-item fade-up stagger-3 visible" data-portfolio-item="">
+        <h3>Festival Secretary – Avishkar 2017</h3><p class="meta">MNNIT</p><p>Managed festival activities and logistics for Avishkar 2017 at MNNIT.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark" data-portfolio-section="interests">
+  <div class="section-inner">
+    <span class="section-label fade-up visible">Beyond Code</span>
+    <h2 class="section-title fade-up visible">Interests</h2>
+    <div class="skills-grid">
+      <span class="skill-tag fade-up stagger-1 visible" data-portfolio-item="">Web Apps</span>
+      <span class="skill-tag fade-up stagger-2 visible" data-portfolio-item="">System Design</span>
+      <span class="skill-tag fade-up stagger-3 visible" data-portfolio-item="">Blockchain</span>
+      <span class="skill-tag fade-up stagger-4 visible" data-portfolio-item="">Photography</span>
+      <span class="skill-tag fade-up stagger-5 visible" data-portfolio-item="">Music</span>
+      <span class="skill-tag fade-up stagger-6 visible" data-portfolio-item="">Travel</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--darker" data-portfolio-section="contact">
+  <div class="section-inner">
+    <span class="section-label fade-up visible">Get in Touch</span>
+    <h2 class="section-title fade-up visible">Contact</h2>
+    <p class="section-desc fade-up visible">Interested in working together? Reach out anytime.</p>
+    <div class="contact-links">
+      <a href="mailto:puneet.devdomain@gmail.com" class="contact-link fade-up stagger-1 visible" data-portfolio-item="">✉ puneet.devdomain@gmail.com</a>
+      <a href="tel:7844970993" class="contact-link fade-up stagger-2 visible" data-portfolio-item="">+91 7844970993</a>
+      <a href="https://www.bizwapp.com" class="contact-link fade-up stagger-3 visible" data-portfolio-item="">🌐 www.bizwapp.com</a>
+      <a href="https://www.linkedin.com/in/puneet-tiwari" class="contact-link fade-up stagger-4 visible" data-portfolio-item="">🔗 LinkedIn</a>
+      <span class="contact-link fade-up stagger-5 visible" data-portfolio-item="">⚲ Bangalore, IN</span>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">© 2026 Puneet Tiwari. All rights reserved.</footer>
+
+<nav class="bottom-nav">
+  <ul>
+    <li><a href="#" data-portfolio-nav="hero" class="active">Home</a></li>
+    <li><a href="#" data-portfolio-nav="experience" class="">Experience</a></li>
+    <li><a href="#" data-portfolio-nav="education" class="">Education</a></li>
+    <li><a href="#" data-portfolio-nav="skills" class="">Skills</a></li>
+    <li><a href="#" data-portfolio-nav="projects" class="">Projects</a></li>
+    <li><a href="#" data-portfolio-nav="achievements" class="">Achievements</a></li>
+    <li><a href="#" data-portfolio-nav="interests" class="">Interests</a></li>
+    <li><a href="#" data-portfolio-nav="contact">Contact</a></li>
+  </ul>
+</nav>
+
+<script>
+(function(){
+  var navLinks = document.querySelectorAll('[data-portfolio-nav]');
+  var sections = document.querySelectorAll('[data-portfolio-section]');
+
+  navLinks.forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      var t = document.querySelector('[data-portfolio-section="'+this.dataset.portfolioNav+'"]');
+      if(t) t.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  var sectionObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var id = entry.target.dataset.portfolioSection;
+        navLinks.forEach(function(l){ l.classList.toggle('active', l.dataset.portfolioNav === id); });
+      }
+    });
+  }, {rootMargin: '-15% 0px -65% 0px', threshold: 0});
+  sections.forEach(function(s){ sectionObs.observe(s); });
+
+  var fadeEls = document.querySelectorAll('.fade-up');
+  var fadeObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); fadeObs.unobserve(e.target); }
+    });
+  }, {threshold: 0.12});
+  fadeEls.forEach(function(el){ fadeObs.observe(el); });
+})();
+</script>
+
+</body></html>
